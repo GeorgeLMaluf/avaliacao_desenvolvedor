@@ -5,6 +5,6 @@ class CreateVendors < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-  end
-  add_index :vendors, :name, unique: true
+    add_index :vendors, :name, unique: true
+  end  
 end
