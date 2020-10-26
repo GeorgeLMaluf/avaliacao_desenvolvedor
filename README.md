@@ -1,24 +1,36 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Configuração do Ambiente**
+* Ruby  2.7.2
+* Rails 5.2.4.4
+* Sqlite 3
 
-Things you may want to cover:
+**Obter os fontes**
+* Clone os fontes do repositório git
+```bash
+git clone https://github.com/GeorgeLMaluf/avaliacao_desenvolvedor.git
+```
+**Configuração**
+* Acesse o diretório do projeto
+```bash
+cd avaliacao_desenvolvedor
+```
+* Dentro da pasta do projeto, execute os seguintes comandos:
+```bash
+bundle install
+rails db:drop db:create db:migrate
+```
+**Execução dos testes**
+* Para executar os testes, use o comando:
+```bash
+bundle exec rspec
+```
 
-* Ruby version
+**Execução da aplicação**
+* Para executar a aplicação:
+```bash
+rails s
+```
+* Abra o navegador no endereço [http://localhost:3000](http://localhost:3000/)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+E aproveite.
