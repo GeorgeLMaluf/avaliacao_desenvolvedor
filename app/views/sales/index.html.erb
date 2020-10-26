@@ -1,2 +1,50 @@
-<h1>Sales#index</h1>
-<p>Find me in app/views/sales/index.html.erb</p>
+<h3>Vendas</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Descri&ccedil;&atilde;o</th>
+      <th>Pre&ccedil;o unit&aacute;rio</th>
+      <th>Quantidade</th>
+      <th>Endere&ccedil;o</th>
+      <th>Vendedor</th>
+      <th>A&ccedil;&otilde;es</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @sales.empty? %>
+      <tr>
+        <td colspan="8" class="text-center" style="padding: 15px 0">
+          Não há registros de vendas<br/>
+        </td>
+      </tr>
+    <% else %>
+      <% @sales.each do |sale| %>
+        <tr>
+          <td><%= sale.customer.name %></td>
+          <td><%= sale.description %></td>
+          <td><%= number_to_currency(sale.unit_price, unit: 'R$ ', precision: 2, separator: ",", delimiter: ".") %></td>
+          <td><%= sale.quantity %></td>
+          <td><%= sale.address.name %></td>
+          <td><%= sale.vendor.name %></td>
+          <td><button class="btn btn-error"></button></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<p><%= number_to_currency(@total_sales, unit: 'R$ ', precision: 2, separator: ",", delimiter: ".") %></p>
+
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large waves-effect waves-light cyan tooltipped openModal" data-position="top" data-tooltip="Importar dados">
+    Nova importa&ccedil;&atilde;o
+  </a>
+</div>
+
+<div id="modalUpload" class="modal">
+  <div class="modal-content">
+    <h4><%= t('headings.new_file') %></h4>
+    <div class="divider">
+    </div>
+  </div>
+</div>
