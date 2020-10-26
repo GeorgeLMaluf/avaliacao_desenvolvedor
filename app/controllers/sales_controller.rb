@@ -6,6 +6,12 @@ class SalesController < ApplicationController
     @total_sales = @sales.map { |data| data[:unit_price].to_f * data[:quantity].to_f }.inject(0){|sum, x| sum + x}
   end
 
+  def destroy
+    @sale = Sale.find(params[:id])
+    @sale.destroy!
+    redirect_to sales_path, notice: 'Venda excluída'
+  end
+    
   def import
     unless sale_upload_params[:file]
       redirect_to :root

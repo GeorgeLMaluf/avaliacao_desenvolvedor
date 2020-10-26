@@ -30,7 +30,12 @@
           <td><%= sale.quantity %></td>
           <td><%= sale.address.name %></td>
           <td><%= sale.vendor.name %></td>
-          <td><button class="btn btn-error"></button></td>
+          <td>
+            <%= link_to sale_path(sale), method: :delete, data: {confirm: 'Apagar esta venda?' }, class: "btn btn-sm btn-danger", remote: true do %>
+              Apagar
+            <% end %>
+            
+          </td>
         </tr>
       <% end %>
     <% end %>
