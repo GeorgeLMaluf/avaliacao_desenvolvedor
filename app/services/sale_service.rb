@@ -6,12 +6,12 @@ class SaleService
     @sale = Sale.new(sale_params)
     @customer = Customer.find_or_create_by(name: params[:customer_name])
     @address = Address.find_or_create_by(name: params[:address])
-    @vendor = Vendor.find_or_create_by(name : params[:vendor_name])
+    @vendor = Vendor.find_or_create_by(name: params[:vendor_name])
   end
 
   def call!
     ActiveRecord::Base.transaction do
-      @sale.customer_name = @customer
+      @sale.customer = @customer
       @sale.address = @address
       @sale.vendor = @vendor
       @sale.save!
