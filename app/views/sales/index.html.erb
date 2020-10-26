@@ -1,4 +1,7 @@
 <h3>Vendas</h3>
+<div class="fixed-action-btn">
+  <a class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Importar dados</a>
+</div>
 <table class="table">
   <thead>
     <tr>
@@ -35,16 +38,10 @@
 </table>
 <p><%= number_to_currency(@total_sales, unit: 'R$ ', precision: 2, separator: ",", delimiter: ".") %></p>
 
-<div class="fixed-action-btn">
-  <a class="btn-floating btn-large waves-effect waves-light cyan tooltipped openModal" data-position="top" data-tooltip="Importar dados">
-    Nova importa&ccedil;&atilde;o
-  </a>
-</div>
-
-<div id="modalUpload" class="modal">
-  <div class="modal-content">
-    <h4><%= t('headings.new_file') %></h4>
-    <div class="divider">
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= render 'form' %>
     </div>
   </div>
 </div>
