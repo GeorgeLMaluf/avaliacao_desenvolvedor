@@ -1,0 +1,52 @@
+<h3>Vendas</h3>
+<div class="fixed-action-btn">
+  <a class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Importar dados</a>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Descri&ccedil;&atilde;o</th>
+      <th>Pre&ccedil;o unit&aacute;rio</th>
+      <th>Quantidade</th>
+      <th>Endere&ccedil;o</th>
+      <th>Vendedor</th>
+      <th>A&ccedil;&otilde;es</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @sales.empty? %>
+      <tr>
+        <td colspan="8" class="text-center" style="padding: 15px 0">
+          Não há registros de vendas<br/>
+        </td>
+      </tr>
+    <% else %>
+      <% @sales.each do |sale| %>
+        <tr>
+          <td><%= sale.customer.name %></td>
+          <td><%= sale.description %></td>
+          <td><%= number_to_currency(sale.unit_price, unit: 'R$ ', precision: 2, separator: ",", delimiter: ".") %></td>
+          <td><%= sale.quantity %></td>
+          <td><%= sale.address.name %></td>
+          <td><%= sale.vendor.name %></td>
+          <td>
+            <%= link_to sale_path(sale), method: :delete, data: {confirm: 'Apagar esta venda?' }, class: "btn btn-sm btn-danger", remote: true do %>
+              Apagar
+            <% end %>
+            
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<p><%= number_to_currency(@total_sales, unit: 'R$ ', precision: 2, separator: ",", delimiter: ".") %></p>
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>
